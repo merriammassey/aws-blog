@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 // configure service interface object
 const AWS = require("aws-sdk");
+const { stringify } = require("uuid");
 const awsConfig = {
   region: "us-east-2",
 };
@@ -63,4 +64,29 @@ router.get("/users/:username", (req, res) => {
   });
 });
 
+// create new thought at /api/users
+router.post("/users", (req, res) => {
+  //set params object to form data in ThoughtForm, accessed with req.body
+  const params = {
+    TableName: table,
+    Item: {
+      username: req.body.username,
+      createdAt: Date.now(),
+      thought: req.body.thought,
+    },
+  };
+
+  dynamodb.put(params, (err, data) => {
+    if (err) {
+      console.error(
+        "Unable to add item. Error JSON:",
+        JSON.stringify(err, null, 2)
+      ),
+        res.status(500).json(err);
+    } else {
+      console.log("Added item:", JSON.stringify(data, null, 2));
+      res.json({ Added: JSON.stringify(data, null, 2) });
+    }
+  });
+});
 module.exports = router;
