@@ -26,4 +26,41 @@ router.get("/users", (req, res) => {
   });
 });
 
+// get all thoughts for specific user, get to profile page by selecting name of user on homepage
+router.get("/users/:username", (req, res) => {
+  console.log(`Querying for thought(s) from ${req.params.username}.`);
+
+  const params = {
+    TableName: table,
+    // specify search criteria - filter query
+    KeyConditionExpression: "#un = :user",
+    // DynamoDB aliases are best practice to avoid list of reserved words like time/date/user/data
+    ExpressionAttributeNames: {
+      "#un": "username",
+      "#ca": "createdAt",
+      "#th": "thought",
+    },
+    //use the username selected by user to determine condition of search
+    ExpressionAttributeValues: {
+      ":user": req.params.username,
+    },
+    // determine which attributes or columns will be returned (similar to SELECT in SQL)
+    // return thoughts and createdAt
+    ProjectionExpression: "#th, #ca",
+    // specify order for sort key - descending
+    ScanIndexForward: false,
+  };
+
+  // use service interface object and query method to retrieve thoughts
+  dynamodb.query(params, (err, data) => {
+    if (err) {
+      console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+      res.status(500).json(err); // an error occurred
+    } else {
+      console.log("Query succeeded.");
+      res.json(data.Items);
+    }
+  });
+});
+
 module.exports = router;
