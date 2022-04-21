@@ -1,11 +1,42 @@
-import React, { useState } from "react";
-
+import React, { useState, useRef } from "react";
 const ThoughtForm = () => {
   const [formState, setFormState] = useState({
     username: "",
     thought: "",
   });
   const [characterCount, setCharacterCount] = useState(0);
+  const fileInput = useRef(null);
+
+  const handleImageUpload = (event) => {
+    // without the next ine, the thought will save before the image is appended
+    event.preventDefault();
+    // TO DO: add a progress bar or disable the form submit button while the image is processing
+
+    // declare interface object from FormData
+    const data = new FormData();
+    //assign key-value pair to FormData object with name of file (image) and payload
+    data.append("image", fileInput.current.files[0]);
+    // send image file to endpoint with the postImage function
+    const postImage = async () => {
+      try {
+        const res = await fetch("/api/image-upload", {
+          mode: "cors",
+          method: "POST",
+          body: data,
+        });
+        if (!res.ok) throw new Error(res.statusText);
+        // convert reponse to JSON object so it can be added to formState
+        const postResponse = await res.json();
+        //public URL of image
+        setFormState({ ...formState, image: postResponse.Location });
+
+        return postResponse.Location;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    postImage();
+  };
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -60,7 +91,14 @@ const ThoughtForm = () => {
           className="form-input col-12 "
           onChange={handleChange}
         ></textarea>
-        <button className="btn col-12 " type="submit">
+        <label className="form-input col-12  p-1">
+          Add an image to your thought:
+          <input type="file" ref={fileInput} className="form-input p-2" />
+          <button className="btn" onClick={handleImageUpload} type="submit">
+            Upload
+          </button>
+        </label>
+        <button className="btn col-12" type="submit">
           Submit
         </button>
       </form>
