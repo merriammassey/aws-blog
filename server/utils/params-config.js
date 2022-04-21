@@ -15,6 +15,7 @@ const params = (fileName) => {
     Key: `${uuidv4()}.${fileType}`,
     //temporary storage container, which multer will remove
     Body: fileName.buffer,
+    ACL: "public-read",
   };
 
   return imageParams;
