@@ -2,7 +2,7 @@
 
 ## Description
 
-The purpose of this project was to configure and use a Linux server to deploy a simple app to an AWS Elastic Compute Cloud (EC2) instance. Static assets are stored and retreived using Amazon Simple Stroage Service (S3), and the app is connected to a DynamoDB database. 
+The purpose of this project was to configure and use a Linux server to deploy a simple app to an AWS Elastic Compute Cloud (EC2) instance. Static assets are stored and retrieved using Amazon Simple Storage Service (S3), and the app is connected to a DynamoDB database. 
 
 [Visit the deployed app.](http://18.216.144.66/)
 
