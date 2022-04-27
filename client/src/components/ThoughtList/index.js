@@ -33,7 +33,7 @@ const ThoughtList = ({ thoughts, title }) => {
                 />
               </p>
             )}
-            {thought.thought && <p className="px-2 mt-2">{thought.thought}</p>}
+            {/*{thought.thought && <p className="px-2 mt-2">{thought.thought}</p>}*/}
           </div>
         ))}
     </div>

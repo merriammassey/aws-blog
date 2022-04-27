@@ -6,7 +6,7 @@ const AWS = require("aws-sdk");
 const fs = require("fs");
 
 AWS.config.update({
-  region: "us-east-1",
+  region: "us-east-2",
 });
 // use the DocumentClient class to create dynamodb service object
 // use JS objects and return JS types, map objects which reduces impedance mismatching
