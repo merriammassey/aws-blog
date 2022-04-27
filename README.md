@@ -4,6 +4,8 @@
 
 The purpose of this project was to configure and use a Linux server to deploy a simple app to an AWS Elastic Compute Cloud (EC2) instance. Static assets are stored and retreived using Amazon Simple Stroage Service (S3), and the app is connected to a DynamoDB database. 
 
+[Visit the deployed app.](http://18.216.144.66/)
+
 ## Table of Contents
 
 - [Tools](#tools)
@@ -27,7 +29,15 @@ The purpose of this project was to configure and use a Linux server to deploy a 
 
 ## Usage
 
+The app includes a form where users can add thoughts and images. 
 
+Future improvements include adding a progress bar or disabling the form submit button while the image is processing. Since the upload to S3 is asynchronous and takes some time, this would prevent the form from being submitted before the response from the upload process is returned. This was out of the scope of this project at this time.
+
+<img width="1356" alt="image" src="https://user-images.githubusercontent.com/77468612/165642515-c8787c32-d136-45cd-8b5d-23a2ae2e5595.png">
+
+Below the form, users posts and images are displayed along with the user name and date created.
+
+<img width="1356" alt="image" src="https://user-images.githubusercontent.com/77468612/165643044-c601ddaf-f550-4e7a-b73e-257c5274cbd1.png">
 
 ## License
 
