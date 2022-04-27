@@ -40,7 +40,6 @@ router.get("/users/:username", (req, res) => {
       "#un": "username",
       "#ca": "createdAt",
       "#th": "thought",
-      "#img": "image",
     },
     //use the username selected by user to determine condition of search
     ExpressionAttributeValues: {
