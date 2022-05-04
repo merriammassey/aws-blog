@@ -50,7 +50,7 @@ Starter code provided by the Univeristy of Arizona's coding boot camp.
 
 ## Questions
 
-This project was completed as an AWS for Javascript Developers course. I created a ![a few slides](https://docs.google.com/presentation/d/1M4pw6DD_hTQ8KaeTFVZRIKkxXvfxENywJjSJee-kqw4/edit?usp=sharing) with details on steps taken and tools used.
+This project was completed as an AWS for Javascript Developers course. I created [a few slides](https://docs.google.com/presentation/d/1M4pw6DD_hTQ8KaeTFVZRIKkxXvfxENywJjSJee-kqw4/edit?usp=sharing) with details on steps taken and tools used.
 
 Email merriammassey@gmail.com
 
